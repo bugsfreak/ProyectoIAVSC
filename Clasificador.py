@@ -1,4 +1,3 @@
-from Minerales import minerales
 
 class AgenteClasificador:
     
@@ -26,6 +25,7 @@ class AgenteClasificador:
     densidad = 0
     dureza = 0
     costo = 0
+    mineral = 'Piedra'
 
     def __init__(self):
 
@@ -97,8 +97,80 @@ class AgenteClasificador:
 
         except:
             print('No se ha ingresado un número')
+
         
-       
+    def esHalita(self):
+
+        if(self.dureza >= 2 and self.dureza <= 2.5):
+            if(self.densidad >= 2 and self.densidad <= 2.165):
+                self.mineral = 'Halita'
+                self.costo += 1
+
+        return self.mineral
+
+    def esGypsum(self):
+            
+        if(self.dureza >= 2 and self.dureza <= 2.5):
+            if(self.densidad >= 2.3 and self.densidad <= 2.33):
+                self.mineral = 'Gypsum'
+                self.costo += 1
+
+        return self.mineral
+
+
+    def esCalcita(self):
+
+        if(self.dureza >= 3 and self.dureza <= 3.5):
+            if(self.densidad >= 2.7 and self.densidad <= 2.72):
+                self.mineral = 'Calcita'
+                self.costo += 1
+
+        return self.mineral
+
+    def esDolomita(self):
+
+        if(self.dureza >= 3.5 and self.dureza <= 4):
+            if(self.densidad >= 2.8 and self.densidad <= 2.84):
+                self.mineral = 'Dolomita'
+                self.costo += 1
+
+        return self.mineral
+        
+    def esAragonita(self):
+
+        if(self.dureza >= 3.5 and self.dureza <= 4):
+            if(self.densidad >= 2.9 and self.densidad <= 2.94):
+                self.mineral = 'Aragonita'
+                self.costo += 1
+
+        return self.mineral
+
+    def esFluorita(self):
+
+        if(self.dureza >= 4 and self.dureza <= 4.5):
+            if(self.densidad >= 3 and self.densidad <= 3.5):
+                self.mineral = 'Fluorita'
+                self.costo += 1
+
+        return self.mineral
+    
+    def esMagnetita(self):
+
+        if(self.dureza >= 5 and self.dureza <= 5.5):
+            if(self.densidad >= 5.1 and self.densidad <= 5.2):
+                self.mineral = 'Magnetita'
+                self.costo += 1
+
+        return self.mineral
+
+    def esCuarzo(self):
+
+        if(self.dureza >= 7 and self.dureza <= 7.5):
+            if(self.densidad >= 2.6 and self.densidad <= 2.66):
+                self.mineral = 'Cuarzo'
+                self.costo += 1
+
+        return self.mineral   
 
 
 
@@ -111,6 +183,7 @@ if __name__ == '__main__':
         piedra = input('Ingrese la piedra (1 ó 0): ')
         agente.ingresoPiedra(piedra)
         if(agente.piedra == 1):
+            agente.mineral = 'Piedra'
             while(C_densidad == True):
                 densidad = input('Ingrese la densidad: ')
                 C_densidad = agente.ingresoDensidad(densidad)
@@ -119,26 +192,29 @@ if __name__ == '__main__':
                 dureza = input('Ingrese la dureza: ')
                 C_dureza = agente.ingresoDureza(dureza)
             
-            mineral = minerales.esFluorita()
-            mineral = minerales.esAragonita()
-            mineral = minerales.esCalcita()
-            mineral = minerales.esCuarzo()
-            mineral = minerales.esDolomita()
-            mineral = minerales.esGypsum()
-            mineral = minerales.esHalita()
-            mineral = minerales.esMagnetita()
+            mineral = agente.esFluorita()
+            mineral = agente.esAragonita()
+            mineral = agente.esCalcita()
+            mineral = agente.esCuarzo()
+            mineral = agente.esDolomita()
+            mineral = agente.esGypsum()
+            mineral = agente.esHalita()
+            mineral = agente.esMagnetita()
 
             print('El mineral hallado es: ', mineral)
             print('El costo de la ejecución es: ', agente.costo)
 
-        opcion = input('Desea continuar con la ejecución (si/no): ').lower
+            
+
+        opcion = input('Desea continuar con la ejecución (si/no): ').casefold()
         
         if(opcion == 'si'):
             print('------------------------------------------')
         elif(opcion == 'no'):
-            break
+            break;
         else:
             print('Se ha escrito una opción errónea')
+            break;
 
                     
 
